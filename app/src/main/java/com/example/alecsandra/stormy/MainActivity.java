@@ -3,6 +3,8 @@ package com.example.alecsandra.stormy;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
+import android.location.Address;
+import android.location.Geocoder;
 import android.location.Location;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
@@ -26,6 +28,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private double mLatitude;
     private double mLongitude;
 
+    @BindView(R.id.locationLabel) TextView mLocation;
     @BindView(R.id.timeLabel) TextView mTimeLabel;
     @BindView(R.id.temperatureLabel) TextView mTemperatureLabel;
     @BindView(R.id.humidityValue) TextView mHumidityValue;
@@ -257,6 +262,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             mLongitude = location.getLongitude();
             Log.d(TAG, "Latitude " + mLatitude);
             Log.d(TAG, "Longitude " + mLongitude);
+            Geocoder geocoder = new Geocoder(getApplicationContext(), Locale.getDefault());
+            try {
+                List<Address> listAddresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                if (null != listAddresses && listAddresses.size() > 0) {
+                    mLocation.setText(listAddresses.get(0).getLocality());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
