@@ -10,5 +10,13 @@
     <string name="forecast_api_key">YOUR_KEY_HERE</string>
 
     <string name="no_daily_forecast_data">There is no data to display</string>
+    <string name="humidityLabel">HUMIDITY</string>
+    <string name="precipLabel">RAIN/SNOW?</string>
+    <string name="hourlyButtonLabel">Hourly</string>
+    <string name="dailyButtonLabel">7 Days</string>
+    <string name="summaryLabel">Getting current weather</string>
+    <string name="thisWeekLabel">This Week\'s weather</string>
+    <string name="hourlyForecastLabel">Hourly forecast</string>
+    <string name="location">City, Country?</string>
 
 </resources>

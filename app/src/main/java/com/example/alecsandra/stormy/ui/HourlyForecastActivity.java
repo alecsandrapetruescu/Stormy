@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.TextView;
 
 import com.example.alecsandra.stormy.R;
 import com.example.alecsandra.stormy.adapters.HourAdapter;
@@ -19,6 +20,7 @@ import butterknife.ButterKnife;
 public class HourlyForecastActivity extends AppCompatActivity {
 
     @BindView(R.id.recyclerView) RecyclerView mRecyclerView;
+    @BindView(R.id.hourlyLocationLabel) TextView mLocation;
     private Hour[] mHours;
 
     @Override
@@ -39,6 +41,9 @@ public class HourlyForecastActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
 
         mRecyclerView.setHasFixedSize(true);
+
+        String location = intent.getStringExtra(MainActivity.YOUR_LOCATION);
+        mLocation.setText(location);
 
     }
 }

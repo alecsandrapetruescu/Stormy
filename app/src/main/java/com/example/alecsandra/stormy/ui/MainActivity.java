@@ -373,6 +373,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void startHourlyActivity(View view) {
         Intent intent = new Intent(this, HourlyForecastActivity.class);
         intent.putExtra(HOURLY_FORECAST, mForecast.getHourlyForecast());
+        intent.putExtra(YOUR_LOCATION, mLocation.getText().toString());
         startActivity(intent);
     }
 }
