@@ -23,6 +23,7 @@ public class DailyForecastActivity extends Activity {
 
     @BindView(android.R.id.list) ListView mListView;
     @BindView(android.R.id.empty) TextView mEmptyTextView;
+    @BindView(R.id.locationLabel) TextView mLocation;
     private Day[] mDays;
 
     @Override
@@ -35,6 +36,9 @@ public class DailyForecastActivity extends Activity {
         Intent intent = getIntent();
         Parcelable[] parcelables = intent.getParcelableArrayExtra(MainActivity.DAILY_FORECAST);
         mDays = Arrays.copyOf(parcelables, parcelables.length, Day[].class);
+
+        String location = intent.getStringExtra(MainActivity.YOUR_LOCATION);
+        mLocation.setText(location);
 
         DayAdapter adapter = new DayAdapter(this, mDays);
         mListView.setAdapter(adapter);

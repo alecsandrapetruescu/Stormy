@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public static final String TAG = MainActivity.class.getSimpleName();
     public static final String DAILY_FORECAST = "DAILY_FORECAST";
     public static final String HOURLY_FORECAST = "HOURLY_FORECAST";
+    public static final String YOUR_LOCATION = "YOUR_LOCATION";
 
     @BindView(R.id.locationLabel) TextView mLocation;
     @BindView(R.id.timeLabel) TextView mTimeLabel;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     @BindView(R.id.iconImageView) ImageView mIconImageView;
     @BindView(R.id.refreshImageView) ImageView mrefreshImageView;
     @BindView(R.id.progressBar) ProgressBar mProgressBar;
-    
+
     private Forecast mForecast;
     private GoogleApiClient mGoogleApiClient;
     private LocationRequest mLocationRequest;
@@ -336,7 +337,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             try {
                 List<Address> listAddresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                 if (null != listAddresses && listAddresses.size() > 0) {
-                    mLocation.setText(listAddresses.get(0).getLocality());
+                    mLocation.setText(listAddresses.get(0).getLocality() + ", " + listAddresses.get(0).getCountryName());
                     Log.d(TAG, "Location  " + listAddresses.get(0).getLocality());
                 }
             } catch (IOException e) {
@@ -364,6 +365,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void startDailyActivity(View view) {
         Intent intent = new Intent(this, DailyForecastActivity.class);
         intent.putExtra(DAILY_FORECAST, mForecast.getDailyForecast());
+        intent.putExtra(YOUR_LOCATION, mLocation.getText().toString());
         startActivity(intent);
     }
 
