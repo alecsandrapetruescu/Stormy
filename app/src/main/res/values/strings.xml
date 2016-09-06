@@ -9,4 +9,6 @@
     <string name="forecast_url">https://api.forecast.io/forecast/</string>
     <string name="forecast_api_key">YOUR_KEY_HERE</string>
 
+    <string name="no_daily_forecast_data">There is no data to display</string>
+
 </resources>
