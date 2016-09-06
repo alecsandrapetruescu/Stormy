@@ -69,7 +69,7 @@ public class Current {
 
     public double getPrecipChance() {
         double precipPercentage = mPrecipChance * 100;
-        return (int) Math.round(mPrecipChance);
+        return (int) Math.round(precipPercentage);
     }
 
     public void setPrecipChance(double precipChance) {
